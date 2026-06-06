@@ -13,9 +13,8 @@ Cette application constitue le client web destiné aux clients de JH Drivers.
 - Réservation d'une course
 - Consultation des informations du compte
 - Consultation de l'historique des réservations
-- Affichage du chauffeur et du statut de chaque course
-- Navigation animée entre les sections sans rechargement complet
-- Modèle 3D automobile en arrière-plan avec positions de caméra adaptées
+- Navigation animée entre les sections
+- Modèle 3D automobile en arrière-plan
 - Interface responsive pour ordinateur et mobile
 
 ---
