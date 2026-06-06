@@ -120,6 +120,24 @@ chmod +x install_web.sh
 
 Le script installe PHP et MariaDB, crée la base, importe les données de démonstration et génère `config/database.php`.
 
+Le fichier de connexion lit aussi les variables d'environnement suivantes si elles sont définies : `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`.
+
+Sur AlwaysData, renseignez l'hôte MySQL fourni par l'hébergeur dans `DB_HOST` et gardez le port indiqué dans le panneau d'administration, généralement `3306`.
+
+### Configuration AlwaysData
+
+Si vous déployez le projet sur AlwaysData, reprenez les identifiants fournis par le panneau MySQL et adaptez `config/database.php` ou les variables d'environnement avec les valeurs suivantes :
+
+```bash
+DB_HOST="mysql-jhdrivers.alwaysdata.net"
+DB_PORT="3306"
+DB_NAME="jhdrivers_e6"
+DB_USER="jhdrivers_max"
+DB_PASS="votre_mot_de_passe"
+```
+
+Si votre mot de passe change dans AlwaysData, mettez à jour `DB_PASS` en conséquence. L'erreur `SQLSTATE[HY000] [2002] No such file or directory` indique généralement que `localhost` est encore utilisé au lieu de l'hôte distant.
+
 Les paramètres peuvent être personnalisés :
 
 ```bash
@@ -163,6 +181,8 @@ Le schéma complet et les données de démonstration sont disponibles dans `data
 ### Problèmes fréquents
 
 **Erreur de connexion à la base** : vérifiez que MySQL est démarré et que `config/database.php` contient les bons identifiants.
+
+Si le message contient `SQLSTATE[HY000] [2002] No such file or directory`, c'est presque toujours que l'application essaie d'atteindre un socket local via `localhost`. Sur AlwaysData, utilisez l'hôte MySQL distant fourni par l'hébergeur, pas `localhost`.
 
 **Le modèle 3D ne s'affiche pas** : vérifiez que le fichier GLB existe dans `assets/models/` et que le navigateur autorise le chargement du module `<model-viewer>`.
 

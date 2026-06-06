@@ -1,13 +1,14 @@
 <?php
 
-$host = "localhost";
-$dbname = "jhdrivers-e6";
-$username = "root";
-$password = "";
+$host = getenv('DB_HOST') ?: 'mysql-jhdrivers.alwaysdata.net';
+$port = getenv('DB_PORT') ?: '3306';
+$dbname = getenv('DB_NAME') ?: 'jhdrivers_e6';
+$username = getenv('DB_USER') ?: 'jhdrivers_max';
+$password = getenv('DB_PASS') ?: 'Maxime94400';
 
 try {
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4",
         $username,
         $password
     );
